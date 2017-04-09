@@ -1,0 +1,70 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script language="Javascript" src="jquery.js"></script>
+		<!--script type="text/JavaScript" src='state.js'></script-->
+	    <link rel="stylesheet" type="text/css" href="{% static 'pmkvy_test/dashboard.css' %}">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<!--link rel="stylesheet" href="base_style.css"-->
+		<!--link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Work+Sans"-->
+		<!--script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script-->
+		<!--link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet"-->
+		<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+				
+		<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script-->
+		
+		<title>Website</title>
+		
+		<script>
+			setInterval(function() { ObserveInputValue($('#c_name').val()); }, 1);
+		</script>
+		
+	</head>
+
+	<body>
+	<nav>
+		<div class="container">
+				<a href="#" class="nav-logo">
+					<div class="nav-logo-img"></div>
+				</a>
+				<ul>
+					<li><a href="#" class="active">Home</a></li><!--
+					--><li><a href="#">About</a></li><!--
+					--><li><a href="#">Work</a></li><!--
+					--><li class="dropdown">
+							<a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+							<div class="dropdown-content">
+								<a href="#">Link 1</a>
+								<a href="#">Link 2</a>
+								<a href="#">Link 3</a>
+							</div>
+						</li><!--
+					--><li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="main-wrapper">
+				<div class="left-panel">
+					<div class="left-panel-container">
+						<ul>
+							<a href="#"><li>Check Centers Status</li></a>
+							<a href="#"><li>Manage Centers List</li></a>
+							<a href="#"><li>Check Pending Requests</li></a>
+						</ul>
+					</div>
+				</div>
+				<div class="right-panel">
+					<div class="update-center-info-div md-whiteframe-2dp">
+						<div class="module-header">
+							{{ line_chart.as_html }}
+						</div>			
+					</div>
+				</div>		
+		</div>
+	</body>
+</html>	

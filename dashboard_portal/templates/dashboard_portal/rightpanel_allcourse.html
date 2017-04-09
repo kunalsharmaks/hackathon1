@@ -1,0 +1,70 @@
+                    <div class="update-center-info-div">	
+						<div class="module-header">
+							All Courses
+						</div>
+					</div>
+					<!--form action="{% url 'dashboard:update' %}" method="POST"> 
+						{% csrf_token %}
+						<div class="update-center-info-div md-whiteframe-2dp">
+							<table>
+								<div class="module-header-branch">
+									General Center Information
+								</div>	
+								<tr>
+									<td>Center Name</td>
+									<td><input name="c_name" type="text" value="{{ result.training_center_name }}"></td>
+								</tr>
+								<tr>
+									<td>Center ID</td>
+									<td class="table-data-right"><input name="c_id" type="text" value="{{ result.center_id }}" disabled></td>
+								</tr>
+								<tr>
+									<td>Center Address</td>
+									<td><textarea  name="c_addr" cols="30" rows="4">{{ result.address }}</textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="update-center-info-div md-whiteframe-2dp">
+							<table>
+								<div class="module-header-branch">
+									Training Partner Information
+								</div>	
+								<tr>
+									<td>Name</td>
+									<td><input name="c_partner_name" type="text" value="{{ result.training_partner }}"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="update-center-info-div md-whiteframe-2dp">
+							<table>
+								<div class="module-header-branch">
+									Contact Details
+								</div>	
+								<tr>
+									<td>Center POC Name</td>
+									<td><input name="c_poc_name" type="text" value="{{ result.center_poc_name }}"></td>
+								</tr>
+								<tr>
+									<td>Center POC Email</td>
+									<td><input name="c_poc_email" type="text" value="{{ result.center_poc_email }}"></td>
+								</tr>
+							</table>
+						</div>
+						<input name="c_button" class="update-button md-whiteframe-4dp" type="submit" value="Update" onclick="saveall()">
+					</form-->
+					<div class="update-center-info-div">
+						{% if result %}
+						<table border=1>
+							<tr>
+								<th>Center Id</td>
+							</tr>
+							{% for data in result %}
+							<tr>
+								<td>{{ data.c_id }}</td>
+							</tr>
+							{% endfor %}
+						{% else %}
+							<h2>None</h2>
+						{% endif %}
+						</table>
+					</div>

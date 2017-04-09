@@ -1,0 +1,98 @@
+<div class="update-center-info-div md-whiteframe-2dp">	
+		<div class="module-header">
+			Add new student
+		</div>
+		<div class="update-center-info-div">
+			<form action="{% url 'dashboard:addnewstudentprocess' %}" method="post">
+				{% csrf_token %}
+				<table>
+					<tr>
+						<td>Candidate Name</td>
+						<td><input name="c_name" type="text"></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input name="c_email_id" type="text"></td>
+					</tr>
+					<tr>
+						<td>Contact no</td>
+						<td><input name="c_contact_number" type="text"></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td><textarea rows=5 cols=30 name="c_address"></textarea></td>
+					</tr>
+					<tr>
+						<td>State</td>
+						<td><input name="c_state_ut" type="text"></td>
+					</tr>
+					<tr>
+						<td>District</td>
+						<td><input name="c_district" type="text"></td>
+					</tr>
+					<tr>
+						<td>Pincode</td>
+						<td><input name="c_pincode" type="text"></td>
+					</tr>
+					<tr>
+						<td>Date of Birth(yyyy-mm-dd)</td>
+						<td><input name="c_date_of_birth" type="text"></td>
+					</tr>
+					<tr>
+						<td>Father's Name</td>
+						<td><input name="c_f_name" type="text"></td>
+					</tr>
+					<tr>
+						<td>Gender</td>
+						<td><input name="c_gender" type="text"></td>
+					</tr>
+					<tr>
+						<td>Category</td>
+						<td><input name="c_category" type="text"></td>
+					</tr>
+					<tr>
+						<td>Is BPL?</td>
+						<td><input type="checkbox" name="c_is_bpl"></td>
+					</tr>
+					<tr>
+						<td>Annual Family Income</td>
+						<td><input name="c_annual_family_income" type="text"></td>
+					</tr>
+					<tr>
+						<td>Educational Qualification</td>
+						<td><input name="c_educational_qualification" type="text"></td>
+					</tr>
+					<tr>
+						<td>Preferred Training State</td>
+						<td><input type="text" name="c_preferred_training_state_ut"></td>
+					</tr>
+					<tr>
+						<td>Preferred Sector</td>
+						<td><input type="text" name="c_sector"></td>
+					</tr>
+					<tr>
+						<td>Preferred Course</td>
+						<td><input type="text" name="c_course"></td>
+					</tr>
+					<tr>
+						<td>Is ready to relocate?</td>
+						<td><input type="checkbox" name="c_is_ready_to_relocate"></td>
+					</tr>
+					<tr>
+						<td>Max fees</td>
+						<td><input type="text" name="c_max_fee"></td>
+					</tr>
+					<tr>
+						<td>App User Email</td>
+						<td><input name="c_app_user_email" type="text"></td>
+					</tr>
+					<tr>
+						<td>Agree to terms</td>
+						<td><input type="checkbox" name="c_is_agree"></td>
+					</tr>
+				</table>
+				<input type="submit" name="submit" value="register">
+			</form>
+		</div>
+</div>	
+					

@@ -1,0 +1,35 @@
+{% include 'dashboard_portal/header.html' %}
+{% load static %}
+		<div class="main-wrapper">
+				<div class="left-panel">
+					{% include 'dashboard_portal/leftpanel_manage_students.html' %}
+				</div>
+				<div class="right-panel">
+					<div class="update-center-info-div">	
+						<div class="module-header">
+							Students List
+						</div>
+					</div>	
+					<div class="update-center-info-div md-whiteframe-2dp">
+						<table border="1px">
+							<tr>
+								<th>Name</th>
+								<th>Registered Course</th>
+								<th>Registration Date</th>
+								<th></th>
+							</tr>
+							{% for data in student_list%}
+							<tr>
+								<td>{{ data.scr_user_id }}</td>
+								<td>{{ data.scr_course_id }}</td>
+								<td>{{ data.scr_registration_date }}</td>
+								<td><BUTTON>View complete detail</BUTTON></td>
+							</tr>
+							{% endfor %}
+						</table>
+					</div>
+
+				</div>
+		</div>
+	</body>
+</html>	

@@ -1,0 +1,69 @@
+{% include 'dashboard_portal/header.html' %}
+{% load static %}
+		<div class="main-wrapper">
+				<div class="left-panel">
+					{% include 'dashboard_portal/leftpanel.html' %}
+				</div>
+				<div class="right-panel">
+					<div class="update-center-info-div">	
+						<div class="module-header">
+							Update Center Information
+						</div>
+					</div>
+					<form action="#" method="post"> 
+						{% csrf_token %}
+						<div class="update-center-info-div md-whiteframe-2dp">
+							<table>
+								<div class="module-header-branch">
+									General Center Information
+								</div>	
+								<tr>
+									<td>Center Name</td>
+									<td><input id="c_name" type="text" placeholder="{{ result.training_center_name }}"></td>
+								</tr>
+								<tr>
+									<td>Center Id</td>
+									<td class="table-data-right"><input id="c_id" type="text" placeholder="{{ result.center_id }}" disabled></td>
+								</tr>
+								<tr>
+									<td>Center Address</td>
+									<td><textarea name="address" id="c_addr" cols="30" rows="4">{{ result.address }}</textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="update-center-info-div md-whiteframe-2dp">
+							<table>
+								<div class="module-header-branch">
+									Training Partner Information
+								</div>	
+								<tr>
+									<td>Name</td>
+									<td><input id="c_partner_name" type="text" value="{{ result.training_partner }}"></td>
+								</tr>
+								<!--tr>
+									<td>Email</td>
+									<td><input id="c_partner_email" type="text"></td>
+								</tr-->
+							</table>
+						</div>
+						<div class="update-center-info-div md-whiteframe-2dp">
+							<table>
+								<div class="module-header-branch">
+									Contact Details
+								</div>	
+								<tr>
+									<td>Center POC Name</td>
+									<td><input id="c_poc_name" type="text" value="{{ result.center_poc_name }}"></td>
+								</tr>
+								<tr>
+									<td>Center POC Email</td>
+									<td><input id="c_poc_email" type="text" value="{{ result.center_poc_email }}"></td>
+								</tr>
+							</table>
+						</div>
+						<input id="c_button" class="update-button md-whiteframe-4dp" type="submit" value="Update" onclick="saveall()">
+					</div>
+				</form>		
+		</div>
+	</body>
+</html>	
