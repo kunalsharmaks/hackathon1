@@ -1,0 +1,50 @@
+{% include 'dashboard_portal/header.html' %}
+{% load static %}
+		<div class="main-wrapper">
+				<div class="left-panel">
+					{% include 'dashboard_portal/leftpanel_manage_students.html' %}
+				</div>
+				<div class="right-panel">
+					<h2>Training center review </h2>
+					<div class="chartwrapper" style="width:400px;">
+						<canvas id="myChart" width="100" height="100"></canvas>
+					</div>
+				</div>
+		</div>
+
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<script>
+				var ctx = document.getElementById("myChart").getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'doughnut',
+					data: {
+							labels: ["Positive feedback", "Negative feedback"],
+							datasets: [{
+									label: 'Percent share',
+									data: {{ data }},
+									backgroundColor: [
+											'rgba(255, 99, 132, 0.2)',
+											'rgba(54, 162, 235, 0.2)',
+											'rgba(255, 206, 86, 0.2)',
+											'rgba(75, 192, 192, 0.2)',
+											'rgba(153, 102, 255, 0.2)',
+											'rgba(255, 159, 64, 0.2)'
+									],
+									borderColor: [
+											'rgba(255,99,132,1)',
+											'rgba(54, 162, 235, 1)',
+											'rgba(255, 206, 86, 1)',
+											'rgba(75, 192, 192, 1)',
+											'rgba(153, 102, 255, 1)',
+											'rgba(255, 159, 64, 1)'
+									],
+									borderWidth: 1
+							}]
+					},
+					options: {    }
+				});
+			</script>
+	</body>
+</html>

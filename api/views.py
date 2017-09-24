@@ -3,12 +3,12 @@ from django.http import JsonResponse, Http404
 import json
 
 from .models import CustomTest, TrainingCenter, TrainingCenterCourse
-from .models import CandidateRegistration, AppUser, JobRole, SectorSkillCouncil 
+from .models import CandidateRegistration, AppUser, JobRole, SectorSkillCouncil
 from .models import CourseInfo, BatchInfo, StudentCourseRegistration
 from .models import CourseFeedbackDetail, StatewiseDistrict, StateIndia
 from .models import EmployerUser, JobProfile, AadharDummy, TrainingCenterJobRole
 
-from .serializers import TrainingCenterCourseSerializer, CustomTestSerializer 
+from .serializers import TrainingCenterCourseSerializer, CustomTestSerializer
 from .serializers import CourseInfoSerializer, TrainingCenterSerializer, LoginCheckSerializer
 from .serializers import CandidateRegistrationSerializer, AppUserSerializer, JobRoleSerializer
 from .serializers import BatchInfoSerializer, StudentCourseRegistrationSerializer
@@ -22,7 +22,7 @@ from rest_framework import status
 
 import xlrd
 import requests
-
+from textblob import TextBlob
 
 
 ##############################################################
@@ -37,7 +37,7 @@ class CustomTestList(APIView):
 ##############################################################
 
 # api/trainingcenter/
-# Takes training center district as a request parameter 
+# Takes training center district as a request parameter
 # and returns all the training centers based on the district
 
 class TrainingCenterList(APIView):
@@ -48,24 +48,24 @@ class TrainingCenterList(APIView):
 			training_center_district = jsonobject["training_center_district"]
 		except:
 			training_center_district = request.data["training_center_district"]
-		trainingcenters = TrainingCenter.objects.filter(training_center_district=training_center_district)	
+		trainingcenters = TrainingCenter.objects.filter(training_center_district=training_center_district)
 		serializer = TrainingCenterSerializer(trainingcenters, many=True)
 		return Response({'data':serializer.data})
 
 ##############################################################
 
 # api/singletrainingcenter
-# Takes Center Id as a request parameter and returns the details of the 
+# Takes Center Id as a request parameter and returns the details of the
 # training center based on the center id
 
-class SingleTrainingCenter(APIView):              
+class SingleTrainingCenter(APIView):
 
 	def post(self, request, format=None):
 		try:
 			jsonobject = json.loads(request.body)
 			data = jsonobject
 		except:
-			data = request.data	
+			data = request.data
 		#print(jsonobject)
 		center_id = data["center_id"]
 		#center_id = request.data["center_id"]
@@ -80,12 +80,12 @@ class SingleTrainingCenter(APIView):
 
 # api/candidates/
 # get() -- returns the details of all the candidates
-# post() -- Takes App user Email as a request parameter 
-	# and returns the details of the user based on the User Email 
+# post() -- Takes App user Email as a request parameter
+	# and returns the details of the user based on the User Email
 	# to check if the "user registrations status" is "True" or "False"
 
 """
-Candidate information Lists and registraion 
+Candidate information Lists and registraion
 """
 class CandidateList(APIView):
 
@@ -110,7 +110,7 @@ class CandidateListBasedOnTrainingCenter(APIView):
 		return Response({'data':serializer.data})
 
 """class ReturnCertifiedTraineeList(models.Model):
-	
+
 	def post(self, requests, format=None):
 
 		try:
@@ -119,7 +119,7 @@ class CandidateListBasedOnTrainingCenter(APIView):
 		except:
 			data=request.data
 
-		candidate_obj = CandidateRegister.objects.filter(is_certified=True, c_state_ut=data["state"], c_district=data["district"])				
+		candidate_obj = CandidateRegister.objects.filter(is_certified=True, c_state_ut=data["state"], c_district=data["district"])
 		serializer = CandidateRegistrationSerializer(candidate_obj, many=True)
 		return Response({'data':serializer.data})
 """
@@ -127,7 +127,7 @@ class CandidateListBasedOnTrainingCenter(APIView):
 
 # api/candidates/
 # Takes the whole candidate registration credentials as request parameter
-# and registers a candidate 
+# and registers a candidate
 # also sets the "user registrations status" by using app user email
 
 class CandidateRegister(APIView):
@@ -148,7 +148,7 @@ class CandidateRegister(APIView):
 ##############################################################
 
 # api/batchinfolist/
-# returns all the batch details		
+# returns all the batch details
 
 class BatchInfoList(APIView):
 
@@ -166,8 +166,8 @@ class BatchInfoList(APIView):
 ##############################################################
 
 # api/batchinfocourse/
-# Takes Training Center Id and Course Id as a request parameter 
-# and returns the batch details based on the parameters		
+# Takes Training Center Id and Course Id as a request parameter
+# and returns the batch details based on the parameters
 
 class BatchInfoCourse(APIView):
 
@@ -176,10 +176,10 @@ class BatchInfoCourse(APIView):
 			jsonobject = json.loads(request.body)
 			training_center_id = jsonobject["training_center_id"]
 			course_id = jsonobject["course_id"]
-		except:	
+		except:
 			training_center_id = request.data["training_center_id"]
 			course_id = request.data["course_id"]
-			
+
 		courseobj = CourseInfo.objects.get(course_id=course_id)
 		center_id = TrainingCenter.objects.get(center_id=training_center_id)
 		batchlist = courseobj.batchinfo_set.filter(training_center_id=center_id.id)
@@ -190,7 +190,7 @@ class BatchInfoCourse(APIView):
 
 # api/users/
 # get() -- returns the details of all the users
-# post() -- Takes all the user registrations credentials as a request parameter 
+# post() -- Takes all the user registrations credentials as a request parameter
 	# and returns "True" if registrations is successful or "False" if Not
 
 """
@@ -207,7 +207,7 @@ class AppUserView(APIView):
     	return Response({'data':serializer.data})
 
     def post(self, request, format=None):
-    	## apparently request from android is coming in bytes form 
+    	## apparently request from android is coming in bytes form
     	## changed the code .. might have to keep it like this or use try-catch block in future
     	jsonobject = json.loads((request.body).decode("utf-8"))
     	jsonobject1 = json.dumps(jsonobject)
@@ -223,7 +223,7 @@ class AppUserView(APIView):
     		print(serializer.data)
     		print(True)
     		return Response(True, status=status.HTTP_201_CREATED)
-    	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)	
+    	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 """
 	Login Singup credentials - register, login check
@@ -251,10 +251,10 @@ class AppUserView(APIView):
     		return Response(True, status=status.HTTP_201_CREATED)
     	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-##############################################################	   
+##############################################################
 
 # api/logincheck/
-# Takes User Email and User Password as a request parameter 
+# Takes User Email and User Password as a request parameter
 # and uses it for authentication purpose
 
 class LoginCheck(APIView):
@@ -270,7 +270,7 @@ class LoginCheck(APIView):
 		try:
 			user = AppUser.objects.get(user_email=user_email)
 			if user.user_email==user_email and user.user_password==user_password:
-				return Response(True, status=status.HTTP_201_CREATED)	
+				return Response(True, status=status.HTTP_201_CREATED)
 			return Response(False, status=status.HTTP_400_BAD_REQUEST)
 		except:
 			return Response(False, status=status.HTTP_400_BAD_REQUEST)
@@ -278,13 +278,13 @@ class LoginCheck(APIView):
 ##############################################################
 
 # api/jobroledata/
-# returns all the job roles			
+# returns all the job roles
 
 """
 JobRole, Course and Batch API's
 """
 class JobRoleData(APIView):
-	
+
 	def get(self, request, format=None):
 		jobroles = JobRole.objects.all()
 		serializer = JobRoleSerializer(jobroles, many=True)
@@ -327,15 +327,15 @@ class TrainingCenterBasedOnJobRole(APIView):
 
 # api/coursedata/
 # get() -- returns details of all the courses
-# post() -- Takes Job Role name as a request parameter 
+# post() -- Takes Job Role name as a request parameter
 	# and returns all the course list based on the parameter
 
-class CourseData(APIView):				
-	
+class CourseData(APIView):
+
 	def get(self, request, format=None):
 		courselist = CourseInfo.objects.all()
 		serializer = CourseInfoSerializer(courselist, many=True)
-		return Response({'data':serializer.data})	
+		return Response({'data':serializer.data})
 
 	def post(self, request, format=None):
 		try:
@@ -357,7 +357,7 @@ class CourseData(APIView):
 
 # api/fetchtrainingcentercourse/
 # Takes Training Center Id as a request parameter
-# and returns all the courses provided by 		
+# and returns all the courses provided by
 
 class FetchTrainingCenterCourse(APIView):
 
@@ -372,8 +372,8 @@ class FetchTrainingCenterCourse(APIView):
 		serializer = TrainingCenterCourseSerializer(datalist, many=True)
 		return Response({'data':serializer.data})
 
-		
-##############################################################		
+
+##############################################################
 
 class StudentCourseList(APIView):
 
@@ -397,7 +397,7 @@ class GetStudentDetails(APIView):
 
 	def post(self, request, format=None):
 		"""
-			return candidate details if registration status is true 
+			return candidate details if registration status is true
 			other wise return false
 		"""
 		user_email = request.data["user_email"]
@@ -459,6 +459,28 @@ class FeedbackStudentCompletedCourses(APIView):
 		serializer = StudentCourseRegistrationSerializer(student_completed_course_list, many=True)
 		return Response({'data':serializer.data})
 
+class TrainingCenterFeedback(APIView):
+
+	def get(self, request):
+		training_center_id = 'k1'
+		cfd_polarity_pos_list = []
+		cfd_polarity_neg_list = []
+		cfd_training_center_id = TrainingCenter.objects.get(center_id=training_center_id)
+		list_feedbacks = CourseFeedbackDetail.objects.filter(cfd_training_center_id=cfd_training_center_id)
+		serializer = CourseFeedbackDetailSerializer(list_feedbacks, many=True)
+		for item in serializer.data:
+			pol = TextBlob(item['cfd_detail']).sentiment.polarity
+			if pol >= 0:
+				cfd_polarity_pos_list.append(pol)
+			else:
+				cfd_polarity_neg_list.append(pol)
+		total_len = len(cfd_polarity_neg_list) + len(cfd_polarity_pos_list)
+		print(total_len)
+		pos_percent = (float(len(cfd_polarity_neg_list))/total_len)*100
+		neg_percent = (float(len(cfd_polarity_pos_list))/total_len)*100
+		return Response({'pos_list':cfd_polarity_pos_list ,'neg_list':cfd_polarity_neg_list})
+
+
 
 class CourseFeedback(APIView):
 
@@ -506,7 +528,7 @@ class DistrictList(APIView):
 		print(district_all)
 		for item in district_all:
 			districtlist.append(item.sd_district_name)
-		print(str(districtlist))	
+		print(str(districtlist))
 		return Response({'district':districtlist})
 
 
@@ -529,10 +551,10 @@ class EmployerRegister(APIView):
 			return Response(True, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-##############################################################	   
+##############################################################
 
 # api/employer/employerlogincheck
-# Takes Employer Email and Employer Password as a request parameter 
+# Takes Employer Email and Employer Password as a request parameter
 # and uses it for authentication purpose
 
 class EmployerLoginCheck(APIView):
@@ -545,11 +567,11 @@ class EmployerLoginCheck(APIView):
 			eu_password = jsonobject["eu_password"]
 		except:
 			eu_email = request.data["eu_email"]
-			eu_password = request.data["eu_password"]		
+			eu_password = request.data["eu_password"]
 		try:
 			eu_user = EmployerUser.objects.get(eu_email=eu_email)
 			if eu_user.eu_email==eu_email and eu_user.eu_password==eu_password:
-				return Response(True, status=status.HTTP_201_CREATED)	
+				return Response(True, status=status.HTTP_201_CREATED)
 			return Response("pass error", status=status.HTTP_400_BAD_REQUEST)
 		except:
 			return Response("exception", status=status.HTTP_400_BAD_REQUEST)
@@ -667,7 +689,7 @@ class fetchtrainingcenteronce(APIView):
 				return Response(True)
 			except:
 				complete_address = str(tempdata[3])+',+'+str(tempdata[2]).replace(" ","+")
-				
+
 				print("\n\n"+complete_address)
 				url = "https://maps.googleapis.com/maps/api/geocode/json?address="+complete_address+"&key=AIzaSyA9FK6FF-yyq_SZK9NzaItymOYVEH9E2AU"
 				response = requests.get(url)

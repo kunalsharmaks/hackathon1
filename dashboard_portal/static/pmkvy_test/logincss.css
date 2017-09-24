@@ -371,3 +371,9 @@ nav .nav-logo {
 	margin:10px;
 }
 
+/** Data visualization classes for higher authority **/
+
+.chartwrapper {
+        width: 100px;
+        height: 100px;
+}

@@ -36,14 +36,14 @@ class LoginCheckSerializer(serializers.ModelSerializer):
 		fields = ('user_email','user_password')
 
 class JobRoleSerializer(serializers.ModelSerializer):
-	
+
 	class Meta:
 		model = JobRole
 		fields = '__all__'
 		depth = 1
 
 class CourseInfoSerializer(serializers.ModelSerializer):
-	
+
 	class Meta:
 		model = CourseInfo
 		fields = '__all__'
@@ -75,7 +75,7 @@ class CourseFeedbackDetailSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = CourseFeedbackDetail
 		fields = '__all__'
-		depth = 1				
+		depth = 0
 
 ###########################################
 ## Employer Serializers
@@ -91,13 +91,13 @@ class EmployerLoginCheckSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = EmployerUser
-		fields = ('eu_email','eu_password')		
+		fields = ('eu_email','eu_password')
 
 class JobProfileSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = JobProfile
-		fields = ('eu_email','eu_password')		
+		fields = ('eu_email','eu_password')
 
 class TrainingCenterJobRoleSerializer(serializers.ModelSerializer):
 

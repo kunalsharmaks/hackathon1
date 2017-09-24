@@ -56,8 +56,9 @@ urlpatterns = [
     ################ employer urls ############
     url(r'^api/employer/employerregister/', views.EmployerRegister.as_view(), name='employer_employerregister'),
     url(r'^api/employer/employerlogincheck/', views.EmployerLoginCheck.as_view(), name='employer_logincheck'),
-    url(r'^api/employer/createjob/', views.CreateJob.as_view(), name='employer_createjob'),    
+    url(r'^api/employer/createjob/', views.CreateJob.as_view(), name='employer_createjob'),
     #url(r'ha_login/', include("higher_authority.urls")),
+    url(r'^api/trainingcenterfeedback/', views.TrainingCenterFeedback.as_view(), name='api_trainingcenterfeedback'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

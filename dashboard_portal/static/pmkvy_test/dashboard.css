@@ -29,7 +29,7 @@ nav ul {
 	/*float: right;*/
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding-left: 200px;
 }
 nav ul li {
 	display: inline-block;
@@ -225,7 +225,7 @@ nav .nav-logo {
 	float: left;
 	margin: 10px;
 	padding: 30px;
-	
+
 }
 
 .section1 {
@@ -237,7 +237,7 @@ nav .nav-logo {
 .container {
 	width: 1350px;
 	margin: auto;
-	padding-left: 110px;
+	padding-left: 50px;
 }
  /******************** Card Layout ********************/
 .card {
@@ -264,7 +264,7 @@ nav .nav-logo {
 }
 
 .card-title-content {
-	
+
 }
 
 .card td, th {
@@ -294,7 +294,7 @@ nav .nav-logo {
 }
 
 /*********************** Content Header ***********************/
- 
+
 .content-header{
 	font-size: 40px;
 	font-family: Roboto;
@@ -413,6 +413,9 @@ select {
 	float:left;
 	background:#FFFFFF;
 }
+.chartwrapper {
+	width:100px;
+}
 
 .module-header {
 	font-family: Roboto:300;
@@ -443,7 +446,7 @@ select {
 
 .update-button:hover {
 	background:#5AC7A6;
-}	
+}
 
 .update-center-info-div h2 {
 	font-family: Roboto:300;

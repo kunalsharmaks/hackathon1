@@ -27,4 +27,5 @@ urlpatterns = [
 	url(r'^addnews/', views.AddNewsAndNotice, name='addnews'),
 	url(r'^changepassword/', views.ChangePassword, name='changepassword'),
 	url(r'^changepasswordredirect/', views.ChangePasswordRedirect, name='changepasswordredirect'),
+	url(r'^higherauthority/', views.HigherAuthority, name='higherauthority'),
 ]

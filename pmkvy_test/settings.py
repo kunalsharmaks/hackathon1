@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'rest_framework',
-    'jchart',
+    # 'jchart',
     'dashboard_portal.apps.DashboardPortalConfig',
 ]
 
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'pmkvy_test.wsgi.application'
 DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pmkvy_test1',
         'USER': 'root',
         'PASSWORD': 'vaibhav123',

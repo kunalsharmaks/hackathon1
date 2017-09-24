@@ -1,4 +1,5 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 
 from jchart import Chart
@@ -11,9 +12,11 @@ from api.models import BatchInfo, CandidateRegistration, StudentCourseRegistrati
 
 from api.serializers import StudentCourseRegistrationSerializer
 """
-Render login page for training center 
+Render login page for training center
 """
-def centerLoginPage(request):     
+localhost = 'http://localhost:8001'
+
+def centerLoginPage(request):
 	if request.session.get('center_id'):
 		return HttpResponseRedirect('/trainingcenter/updatedetail/')
 	else:
@@ -21,7 +24,7 @@ def centerLoginPage(request):
 
 
 def LoginRedirect(request):
-	
+
 	if request.session.get('center_id'):
 		return HttpResponseRedirect("/dashboard/")
 	else:
@@ -31,7 +34,7 @@ def LoginRedirect(request):
 			request.session['center_id'] = tc_obj.center_id
 			return HttpResponseRedirect("/trainingcenter/updatedetail/")
 		else:
-			return HttpResponseRedirect('/trainingcenter/')			
+			return HttpResponseRedirect('/trainingcenter/')
 
 def ChangePassword(request):
 
@@ -53,7 +56,7 @@ def ChangePasswordRedirect(request):
 	return HttpResponseRedirect('/dashboard/')
 """
 def trainingCenterLogin(request):          ##dashboard
-	
+
 	url = "http://9a3a0b42.ngrok.io/api/singletrainingcenter/"
 
 	center_id = request.POST["centerid"]
@@ -80,11 +83,11 @@ def UpdateDetailView(request):
 	try:
 		if request.session.get('center_id'):
 			center_id = request.session['center_id']
-		else:	
+		else:
 			#return HttpResponseRedirect('/tc_login/')
 			center_id = request.POST["centerid"]
 	except:
-		return HttpResponseRedirect('/trainingcenter/')		
+		return HttpResponseRedirect('/trainingcenter/')
 
 	tc_obj = TrainingCenter.objects.get(center_id=center_id)
 	result = {
@@ -102,7 +105,7 @@ def Update(request):
 	try:
 		if request.session.get('center_id'):
 			center_id = request.session['center_id']
-		else:	
+		else:
 			return HttpResponseRedirect('/trainingcenter/')
 	except:
 		return HttpResponseRedirect('/trainingcenter/')
@@ -124,7 +127,7 @@ def logout(request):
 		del request.session['center_id']
 		return HttpResponseRedirect("/trainingcenter")
 	else:
-		return HttpResponse("Please Login First")	
+		return HttpResponse("Please Login First")
 
 
 def all_courses(request):
@@ -140,7 +143,7 @@ def all_courses(request):
 			}
 
 			courselist.append(result)
-		return render(request, 'dashboard_portal/allcourse.html', {'result':courselist})	
+		return render(request, 'dashboard_portal/allcourse.html', {'result':courselist})
 
 def addnewcourse(request):
 
@@ -157,12 +160,12 @@ def listallstudents(request):
 		response = requests.post(url, data=data)
 		jsonobject = json.loads(response.text)
 		print(response.text)
-		return render(request, 'dashboard_portal/listallstudents.html', {'result':jsonobject})				
+		return render(request, 'dashboard_portal/listallstudents.html', {'result':jsonobject})
 
 
 def addnewstudent(request):
 	if request.session.get('center_id'):
-		return render(request, 'dashboard_portal/addnewstudent.html')	
+		return render(request, 'dashboard_portal/addnewstudent.html')
 	else:
 		return HttpResponseRedirect('/trainingcenter/')
 
@@ -196,7 +199,7 @@ def editstudent(request):
 	if request.session.get("center_id"):
 		return render(request, 'dashboard_portal/editstudent.html')
 	else:
-		return HttpResponseRedirect('/trainingcenter/')	
+		return HttpResponseRedirect('/trainingcenter/')
 
 def editstudentprocess(request):
 	if request.session.get("center_id"):
@@ -205,7 +208,7 @@ def editstudentprocess(request):
 			student_obj = CandidateRegistration.objects.get(c_app_user_email=c_app_user_email)
 			return render(request, 'dashboard_portal/editstudent.html', {'result':student_obj})
 		except:
-			return HttpResponseRedirect('/trainingcenter/')	
+			return HttpResponseRedirect('/trainingcenter/')
 
 def editstudentprocess1(request):
 	if request.session.get("center_id"):
@@ -225,24 +228,24 @@ def addnewbatchprocess(request):
 		tc_obj = TrainingCenter.objects.get(center_id=training_center_id)
 		course_id = request.POST["course_id"]
 		course_obj = CourseInfo.objects.get(course_id=course_id)
-		batch_start_date = request.POST["batch_start_date"]	
+		batch_start_date = request.POST["batch_start_date"]
 		batch_end_date = request.POST["batch_end_date"]
 		#ch_assessment_date = request.POST["batch_assessment_date"]
 
 		batch_obj = BatchInfo.objects.create(training_center_id=tc_obj, course_id=course_obj, batch_start_date=batch_start_date, batch_end_date=batch_end_date)
 		return HttpResponse(True)
 	else:
-		return HttpResponseRedirect("/trainingcenter/")	
+		return HttpResponseRedirect("/trainingcenter/")
 """
 def editbatchdetail(request):
 	if request.session.get("center_id"):
-		return render(request, 'dashboard_portal/editbatchdetail.html')	
+		return render(request, 'dashboard_portal/editbatchdetail.html')
 	else:
 		return HttpResponseRedirect("/trainingcenter/")
 
 def editbatchdetailprocess(request):
 	if request.session.get("center_id"):
-								
+
 """
 """
 def dashboardPortal(request):
@@ -270,7 +273,7 @@ def updateCenterInfo(request):
 		c_partner_name = request.POST["c_partner_name"]
 		c_poc_name = request.POST["c_poc_name"]
 		c_poc_email = request.POST["c_poc_email"]
-	"""	
+	"""
 	else:
 		c_name = request.session["alldata"]["c_name"]
 		c_id = request.session["alldata"]["c_id"]
@@ -315,3 +318,17 @@ def ManageBatches(request):
 def AddNewsAndNotice(request):
 	return render(request, 'dashboard_portal/addnewsandnotice.html')
 
+def HigherAuthority(request):
+	response = requests.get(localhost +'/api/trainingcenterfeedback/')
+	jsonobject = json.loads(response.text)
+	neg_list = jsonobject['neg_list']
+	no_neg = len(neg_list)
+	pos_list = jsonobject['pos_list']
+	no_pos = len(pos_list)
+	neg_percent = float(no_neg)/(no_neg+no_pos)*100
+	pos_percent = float(no_pos)/(no_neg+no_pos)*100
+	data = []
+	data.append(pos_percent)
+	data.append(neg_percent)
+	# return render(request, 'dashboard_portal/higherauthority.html', {'no_neg':no_neg, 'no_pos':no_pos, 'neg_percent':neg_percent, 'pos_percent':pos_percent})
+	return render(request, 'dashboard_portal/higherauthority.html', {'data': data})
