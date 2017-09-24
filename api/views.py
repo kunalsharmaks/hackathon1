@@ -461,8 +461,8 @@ class FeedbackStudentCompletedCourses(APIView):
 
 class TrainingCenterFeedback(APIView):
 
-	def get(self, request):
-		training_center_id = 'k1'
+	def post(self, request, format=None):
+		training_center_id = request.data["training_center_id"]
 		cfd_polarity_pos_list = []
 		cfd_polarity_neg_list = []
 		cfd_training_center_id = TrainingCenter.objects.get(center_id=training_center_id)

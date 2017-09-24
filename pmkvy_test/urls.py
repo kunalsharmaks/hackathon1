@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
-from api import views 
+from api import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -59,6 +59,8 @@ urlpatterns = [
     url(r'^api/employer/createjob/', views.CreateJob.as_view(), name='employer_createjob'),
     #url(r'ha_login/', include("higher_authority.urls")),
     url(r'^api/trainingcenterfeedback/', views.TrainingCenterFeedback.as_view(), name='api_trainingcenterfeedback'),
+    #higher_authority
+    # url(r'^higherauthority/', include("higher.urls")),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

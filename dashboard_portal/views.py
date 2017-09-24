@@ -14,7 +14,7 @@ from api.serializers import StudentCourseRegistrationSerializer
 """
 Render login page for training center
 """
-localhost = 'http://localhost:8001'
+localhost = 'http://localhost:8000'
 
 def centerLoginPage(request):
 	if request.session.get('center_id'):
@@ -331,4 +331,4 @@ def HigherAuthority(request):
 	data.append(pos_percent)
 	data.append(neg_percent)
 	# return render(request, 'dashboard_portal/higherauthority.html', {'no_neg':no_neg, 'no_pos':no_pos, 'neg_percent':neg_percent, 'pos_percent':pos_percent})
-	return render(request, 'dashboard_portal/higherauthority.html', {'data': data})
+	return render(request, 'dashboard_portal/higherauthority.html', {'data': data, 'pos_percent': pos_percent, 'neg_percent':neg_percent})

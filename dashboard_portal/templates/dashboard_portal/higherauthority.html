@@ -5,10 +5,22 @@
 					{% include 'dashboard_portal/leftpanel_manage_students.html' %}
 				</div>
 				<div class="right-panel">
-					<h2>Training center review </h2>
-					<div class="chartwrapper" style="width:400px;">
-						<canvas id="myChart" width="100" height="100"></canvas>
+					<div class="module-header">
+						Analysis of feedbacks by students from "K1" Training Center
 					</div>
+					<div class="chartwrapper-left-panel">
+						<div class="chartwrapper" style="width:400px;">
+							<canvas id="myChart" width="200px" height="200px"></canvas>
+						</div>
+					</div>
+					<div class="chartwrapper-right-panel">
+						<div class="chartwrapper-right-panel-container ">
+							<br/><br/>
+							Positive feedback : {{ pos_percent }}%<br/><br/>
+							Negative feedback : {{ neg_percent }}%
+						</div>
+					</div>
+
 				</div>
 		</div>
 
@@ -25,7 +37,7 @@
 									label: 'Percent share',
 									data: {{ data }},
 									backgroundColor: [
-											'rgba(255, 99, 132, 0.2)',
+											'rgba(255,99,99, 0.2)',
 											'rgba(54, 162, 235, 0.2)',
 											'rgba(255, 206, 86, 0.2)',
 											'rgba(75, 192, 192, 0.2)',

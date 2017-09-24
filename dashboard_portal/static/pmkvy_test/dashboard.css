@@ -115,7 +115,7 @@ nav .nav-logo {
 .main-wrapper {
 			margin-top: 75px;
 			width:1349px;
-			background-color: #F4F4F4;
+			background-color: #FFFFFF;
 			height:1000px;
 }
 
@@ -414,9 +414,24 @@ select {
 	background:#FFFFFF;
 }
 .chartwrapper {
-	width:100px;
+	padding-left: 50px;
 }
-
+.chartwrapper-left-panel {
+	width:50%;
+	position:relative;
+	float:left;
+}
+.chartwrapper-right-panel {
+	width:50%;
+	position:relative;
+	float:left;
+}
+.chartwrapper-right-panel-container {
+	padding: 50px;
+	font-family: Roboto:300;
+	font-size: 22px;
+	opacity:0.87;
+}
 .module-header {
 	font-family: Roboto:300;
 	font-size: 22px;
