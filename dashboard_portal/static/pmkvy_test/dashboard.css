@@ -339,6 +339,17 @@ select {
     cursor: pointer;
 }
 
+.FeedbackAnalysisForm input[type=submit] {
+    width: 18%;
+    background-color: #468966;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .left-panel {
 	width:250px;
 	height:100vh;

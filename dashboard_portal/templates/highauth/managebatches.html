@@ -1,0 +1,38 @@
+{% include 'dashboard_portal/header.html' %}
+{% load static %}
+		<div class="main-wrapper">
+				<div class="left-panel">
+					{% include 'dashboard_portal/leftpanel_batches.html' %}
+				</div>
+				<div class="right-panel">
+					<div class="update-center-info-div">	
+						<div class="module-header">
+							Manage batches
+						</div>
+						Ongoing batches
+						<table border="1px">
+							<tr>
+								<th>Batch ID</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+								<th>Course</th>
+								<th>No. of Students</th>
+								<th>Assessment date</th>
+							</tr>
+							{% for data in batch_list %}
+							<tr>
+								<td>{{ data.id }}</td>
+								<td>{{ data.batch_start_date }}</td>
+								<td>{{ data.batch_end_date }}</td>
+								<td>{{ data.course_id }}</td>
+								<td>0</td>
+								<td>{{ data.batch_assessment_date }}</td>
+							</tr>
+							{% endfor %}
+						</table>
+					</div>
+					
+				</div>
+		</div>
+	</body>
+</html>	

@@ -1,0 +1,89 @@
+<div class="update-center-info-div">	
+	<div class="module-header">
+		Edit Student Details
+	</div>
+	<div class="update-center-info_div">
+		<form action="#" method="post">
+				{% csrf_token %}
+				{% if result %}
+				<table>
+					<tr>
+						<td>Candidate Name</td>
+						<td><input name="c_name" type="text" value="{{ result.c_name }}"></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input name="c_email_id" type="text" value="{{ result.c_email_id }}"></td>
+					</tr>
+					<tr>
+						<td>Contact no</td>
+						<td><input name="c_contact_number" type="text" value="{{ result.c_contact_number }}"></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td><textarea rows=5 cols=30 name="c_address">{{ result.c_address }}</textarea></td>
+					</tr>
+					<tr>
+						<td>State</td>
+						<td><input name="c_state_ut" type="text" value="{{ result.c_state_ut }}"></td>
+					</tr>
+					<tr>
+						<td>District</td>
+						<td><input name="c_district" type="text" value="{{ result.c_district }}"></td>
+					</tr>
+					<tr>
+						<td>Pincode</td>
+						<td><input name="c_pincode" type="text" value="{{ result.c_pincode }}"></td>
+					</tr>
+					<tr>
+						<td>Date of Birth(yyyy-mm-dd)</td>
+						<td><input name="c_date_of_birth" type="text" value="{{ result.c_date_of_birth }}"></td>
+					</tr>
+					<tr>
+						<td>Father's Name</td>
+						<td><input name="c_f_name" type="text" value="{{ result.c_f_name }}"></td>
+					</tr>
+					<tr>
+						<td>Gender</td>
+						<td><input name="c_gender" type="text" value="{{ result.c_gender }}"></td>
+					</tr>
+					<tr>
+						<td>Category</td>
+						<td><input name="c_category" type="text" value="{{ result.c_category }}"></td>
+					</tr>
+					<tr>
+						<td>Annual Family Income</td>
+						<td><input name="c_annual_family_income" type="text" value="{{ result.c_annual_family_income }}"></td>
+					</tr>
+					<tr>
+						<td>Educational Qualification</td>
+						<td><input name="c_educational_qualification" type="text" value="{{ result.c_educational_qualification }}"></td>
+					</tr>
+					<tr>
+						<td>Preferred Training State</td>
+						<td><input type="text" value="{{ result.c_preferred_training_state_ut }}" name="c_preferred_training_state_ut"></td>
+					</tr>
+					<tr>
+						<td>Preferred Sector</td>
+						<td><input type="text" value="{{ result.c_sector }}" name="c_sector"></td>
+					</tr>
+					<tr>
+						<td>Preferred Course</td>
+						<td><input type="text" value="{{ result.c_course }}" name="c_course"></td>
+					</tr>
+					<tr>
+						<td>Max fees</td>
+						<td><input type="text" value="{{ result.c_max_fee }}" name="c_max_fee"></td>
+					</tr>
+					<tr>
+						<td>App User Email</td>
+						<td><input name="c_app_user_email" type="text" value="{{ result.c_app_user_email }}"></td>
+					</tr>
+				</table>
+				<input type="submit" name="submit" value="Update">
+				{% else %}
+					<h2>You Need To Login</h2>
+				{% endif %}
+			</form>
+	</div>
+</div>	

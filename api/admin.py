@@ -5,7 +5,7 @@ from .models import TrainingCenterCourse, CandidateRegistration, AppUser
 from .models import JobRole, SectorSkillCouncil, CourseInfo
 from .models import BatchInfo, StudentCourseRegistration, CourseFeedbackDetail
 from .models import StatewiseDistrict, StateIndia, EmployerUser, JobProfile, AadharDummy
-from .models import TrainingCenterJobRole, CertifiedTraineeList
+from .models import TrainingCenterJobRole, CertifiedTraineeList, HighAuthCredential
 
 admin.site.register(TestTable)
 admin.site.register(CustomTest)
@@ -33,3 +33,4 @@ admin.site.register(AadharDummy)
 Emplyer models
 """
 admin.site.register(EmployerUser)
+admin.site.register(HighAuthCredential)

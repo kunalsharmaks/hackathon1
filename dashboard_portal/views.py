@@ -319,7 +319,12 @@ def AddNewsAndNotice(request):
 	return render(request, 'dashboard_portal/addnewsandnotice.html')
 
 def HigherAuthority(request):
-	response = requests.get(localhost +'/api/trainingcenterfeedback/')
+	# response = requests.get(localhost +'/api/trainingcenterfeedback/')
+	url = localhost +'/api/trainingcenterfeedback/'
+	data = {
+		"training_center_id":"k1"
+	}
+	response = requests.post(url, data=data)
 	jsonobject = json.loads(response.text)
 	neg_list = jsonobject['neg_list']
 	no_neg = len(neg_list)

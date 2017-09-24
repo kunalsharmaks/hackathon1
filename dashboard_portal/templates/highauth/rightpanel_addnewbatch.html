@@ -1,0 +1,23 @@
+<div class="update-center-info-div md-whiteframe-2dp">	
+	<div class="module-header">
+		Add New Batch
+	</div>
+	<form action="{% url 'dashboard:addnewbatchprocess' %}" method="post">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Course Id</td>
+				<td><input name="course_id" type="text"></td>
+			</tr>
+			<tr>
+				<td>Batch Start Date</td>
+				<td><input name="batch_start_date" type="text"></td>
+			</tr>
+			<tr>
+				<td>Batch End Date</td>
+				<td><input name="batch_end_date" type="text"></td>
+			</tr>
+		</table>
+		<input type="submit" value="Create">
+	</form>		
+</div>

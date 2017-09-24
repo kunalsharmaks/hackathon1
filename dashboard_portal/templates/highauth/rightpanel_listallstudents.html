@@ -1,0 +1,19 @@
+<div class="update-center-info-div">
+	<div class="module-header">
+		List All Students
+	</div>
+	<div class="update-center-info-div">
+		{% if result %}
+		<table>
+			{% for data in result %}
+			<tr>
+				<td>{{ data.c_app_user_email }}</td>
+				<td><a href="#">Edit</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+			<h2>None</h2>
+		{% endif %}	
+	</div>
+</div>

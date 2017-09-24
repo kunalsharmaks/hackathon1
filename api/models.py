@@ -18,14 +18,14 @@ class TableTest(models.Model):
     class Meta:
         managed = True
         db_table = 'table_test'
-        
+
 """
 class TestTable(models.Model):
     s_no_a = models.IntegerField(default=0)
-    name_a = models.CharField(max_length=25) 
+    name_a = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.name_a       
+        return self.name_a
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -94,10 +94,10 @@ class TrainingCenter(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'training_center'   
-    
+        db_table = 'training_center'
+
     def __str__(self):
-        return self.center_id             
+        return self.center_id
 
 class CandidateRegistration(models.Model):
     c_name = models.CharField(max_length=70)
@@ -165,7 +165,7 @@ class JobRole(models.Model):
         return self.job_role_name
 
 """
-Course and Batch informations 
+Course and Batch informations
 """
 class CourseInfo(models.Model):
     course_id = models.CharField(max_length=12, unique=True)
@@ -294,4 +294,12 @@ class CertifiedTraineeList(models.Model):
 
     def __str__(self):
 
-        return self.c_app_user_email        
+        return self.c_app_user_email
+
+class HighAuthCredential(models.Model):
+
+    ha_email = models.CharField(max_length=255, unique=True)
+    ha_password = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.ha_email

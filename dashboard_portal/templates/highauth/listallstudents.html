@@ -1,0 +1,35 @@
+{% include 'dashboard_portal/header.html' %}
+{% load static %}
+		<div class="main-wrapper">
+				<div class="left-panel">
+					{% include 'dashboard_portal/leftpanel_manage_students.html' %}
+				</div>
+				<div class="right-panel">	
+					<div class="update-center-info-div">
+						<div class="module-header">
+							List All Students
+						</div>
+						<div class="update-center-info-div">
+							{% if result %}
+							<table>
+								{% for data in result.data %}
+								<tr>
+									<td>{{ data.scr_user_id.user_email }}</td>
+									<form action="{% url 'dashboard:editstudentprocess' %}" method="post">
+										{% csrf_token %}
+										<input name="c_app_user_email" type="hidden" value="{{ data.scr_user_id.user_email }}">
+										<td><input type="submit" value="Edit"></td>
+									</form>	
+								</tr>
+								{% endfor %}
+							</table>
+							{% else %}
+								<h2>None</h2>
+							{% endif %}	
+						</div>
+					</div>
+				</div>
+				</div>
+		</div>
+	</body>
+</html>	

@@ -1,7 +1,6 @@
 """pmkvy_test URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.9/topics/http/urls/
+The `urlpatterns` list routes URLs to views.
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -60,7 +59,7 @@ urlpatterns = [
     #url(r'ha_login/', include("higher_authority.urls")),
     url(r'^api/trainingcenterfeedback/', views.TrainingCenterFeedback.as_view(), name='api_trainingcenterfeedback'),
     #higher_authority
-    # url(r'^higherauthority/', include("higher.urls")),
+    url(r'^highauth/', include("highauth.urls")),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
