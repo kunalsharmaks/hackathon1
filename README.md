@@ -7,4 +7,4 @@ Backend and rest api's for all functions in the PMKVY android app, all api's are
 API for student login, course information, registration, aadhar registration,..
 
 # Employer API
-API for eomployer login, jobs posting, hiring candidates...
+API for eomployer login, jobs posting, hiring candidates..
